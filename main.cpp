@@ -58,8 +58,9 @@ bool existe( char palavra[], char frase[])
     }
     return false;
 }
-void resposta(char palavra[], char frase[]){
-  if(existe(palavra, frase))
+void resposta(char palavra[], char frase[])
+{
+    if(existe(palavra, frase))
     {
         printf("\n\n");
         printf("A palavra existe");
@@ -73,8 +74,8 @@ void resposta(char palavra[], char frase[]){
 
 int main()
 {
-    char palavra[] = "cpf";
-    char frase[100];
+    char palavra[] = "Ezio";
+    char frase[1000];
 
     printf("\n");
     printf("================ Estrutura de dados Busca-em-Strings ========================");
@@ -92,8 +93,12 @@ int main()
         exit (0);
     }
 
-    //fscanf(arquivo,"%s", &frase);
-    fgets(frase, 100, arquivo);
+    while (!feof(arquivo))
+    {
+        fgets(frase, 100, arquivo);
+
+    }
+
     printf("vem do arquivo txt >>  %s", frase);
 
 

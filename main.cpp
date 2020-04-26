@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<ctype.h>
 #include <iostream>
 
 using namespace std;
@@ -59,7 +60,7 @@ bool existe( char palavra[], char frase[])
 }
 int main()
 {
-    char palavra[] = "alves";
+    char palavra[] = "CPf";
     char frase[100];
 
     printf("\n");
@@ -78,7 +79,8 @@ int main()
         exit (0);
     }
 
-    fscanf(arquivo,"%s", &frase);
+    //fscanf(arquivo,"%s", &frase);
+    fgets(frase, 100, arquivo);
     printf("vem do arquivo txt >>  %s", frase);
 
 

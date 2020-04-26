@@ -73,19 +73,7 @@ void resposta(char palavra[], char frase[])
     }
 }
 
-int main()
-{
-    char palavra[] = "Cpf";
-    char frase[100000];
-    strlwr(palavra);
-
-    printf("\n");
-    printf("================ Estrutura de dados Busca-em-Strings ========================");
-    printf("\n\n\n");
-
-
-
-// MANIPULAÇÂO DE ARQUIVO
+void abreFechaArquivo(char frase[]){
     FILE *arquivo;
 
     arquivo = fopen("teste.txt","rt");//wt = gravação, rt = leitura, a = append
@@ -103,12 +91,26 @@ int main()
     */
     fgets(frase, 100000, arquivo);
     printf("vem do arquivo txt >>  %s", frase);
-    strlwr(frase);
 
     printf("\n\n\n");
 
     fclose(arquivo);
 
+}
+
+int main()
+{
+    char palavra[] = "FREIRE";
+    char frase[100000];
+    strlwr(palavra);
+    strlwr(frase);
+
+    printf("\n");
+    printf("================ Estrutura de dados Busca-em-Strings ========================");
+    printf("\n\n\n");
+
+    // MANIPULAÇÂO DE ARQUIVO
+    abreFechaArquivo(frase);
     resposta(palavra, frase);
 
     printf("\n\n\n");

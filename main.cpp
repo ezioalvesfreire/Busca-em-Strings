@@ -73,10 +73,10 @@ void resposta(char palavra[], char frase[])
     }
 }
 
-void abreFechaArquivo(char frase[]){
+void abreFechaArquivo(char frase[], char nomeArquivo[]){
     FILE *arquivo;
 
-    arquivo = fopen("teste.txt","rt");//wt = gravação, rt = leitura, a = append
+    arquivo = fopen(nomeArquivo,"rt");//wt = gravação, rt = leitura, a = append
     if(arquivo == NULL)
     {
         printf("Não foi possivel abrir o arquivo");
@@ -90,7 +90,7 @@ void abreFechaArquivo(char frase[]){
         }
     */
     fgets(frase, 100000, arquivo);
-    printf("vem do arquivo txt >>  %s", frase);
+    printf("texto completo>>\n%s",frase);
 
     printf("\n\n\n");
 
@@ -100,17 +100,26 @@ void abreFechaArquivo(char frase[]){
 
 int main()
 {
-    char palavra[] = "FREIRE";
+    char palavra[100];
     char frase[100000];
     strlwr(palavra);
     strlwr(frase);
+    char nomeArquivo[50];
 
     printf("\n");
     printf("================ Estrutura de dados Busca-em-Strings ========================");
     printf("\n\n\n");
 
+    printf("informe o caminho, nome e extensao do arquivo para que o sistema faca a busca");
+    printf("\n\n");
+    scanf("%s", nomeArquivo);
+
+    printf("Para que seja feita a busca, informe a palavra ou frase desejada");
+    printf("\n\n");
+    scanf("%s", palavra);
+
     // MANIPULAÇÂO DE ARQUIVO
-    abreFechaArquivo(frase);
+    abreFechaArquivo(frase, nomeArquivo);
     resposta(palavra, frase);
 
     printf("\n\n\n");

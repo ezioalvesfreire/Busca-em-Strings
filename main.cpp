@@ -5,6 +5,15 @@
 
 using namespace std;
 
+bool testar(int teste[], int tam){
+    for(int i=0; i<tam; i++){
+        if(teste[i]==0){
+            return false;
+        }
+    }
+    return true;
+}
+
 
 bool existe( char palavra[], char frase[]){
     int teste[strlen(palavra)];
@@ -13,10 +22,10 @@ bool existe( char palavra[], char frase[]){
      if(strlen(palavra) > strlen(frase ) ){
         return false;
      }
-     if(strcmp(palavra, frase) ==0 ){
+     if(strcmp(palavra, frase)==0){
         return true;
      }
-     for(int i = 0; i < strlen(frase) - strlen(palavra); i++){
+     for(int i = 0; i <= strlen(frase) - strlen(palavra); i++){
         if(frase[i] == palavra[0]){
 
             for(int k=0; k<strlen(palavra); k++)
@@ -24,7 +33,7 @@ bool existe( char palavra[], char frase[]){
 
             aux=i;
             for(int j=0; j<strlen(palavra); j++){
-                if(palavra[j]= frase[aux]){
+                if(palavra[j]== frase[aux]){
                     teste[j] = 1;
                     aux++;
                 }
@@ -43,7 +52,7 @@ int main()
     printf("================ Estrutura de dados Busca-em-Strings ========================");
     printf("\n\n\n");
 
-    char palavra[] = "strings";
+    char palavra[] = "busca";
     char frase[] = "teste busca em strings";
 
     if(existe(palavra, frase)){

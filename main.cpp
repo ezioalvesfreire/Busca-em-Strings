@@ -28,7 +28,7 @@ bool existe( char palavra[], char frase[])
     {
         return false;
     }
-    if(strcmp(palavra, frase)==0)
+    if(strcasecmp(palavra, frase)==0)
     {
         return true;
     }
@@ -58,9 +58,22 @@ bool existe( char palavra[], char frase[])
     }
     return false;
 }
+void resposta(char palavra[], char frase[]){
+  if(existe(palavra, frase))
+    {
+        printf("\n\n");
+        printf("A palavra existe");
+    }
+    else
+    {
+        printf("\n\n\n");
+        printf("A palavra nao existe");
+    }
+}
+
 int main()
 {
-    char palavra[] = "CPf";
+    char palavra[] = "cpf";
     char frase[100];
 
     printf("\n");
@@ -88,18 +101,8 @@ int main()
 
     fclose(arquivo);
 
-    ///////////////////////////////////////////////////
+    resposta(palavra, frase);
 
-    if(existe(palavra, frase))
-    {
-        printf("\n\n");
-        printf("A palavra existe");
-    }
-    else
-    {
-        printf("\n\n\n");
-        printf("A palavra nao existe");
-    }
     printf("\n\n\n");
 
     printf("\n\n\n");

@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<strings.h>
 #include<string.h>
 #include<ctype.h>
 #include <iostream>
@@ -74,8 +75,9 @@ void resposta(char palavra[], char frase[])
 
 int main()
 {
-    char palavra[] = "Ezio";
-    char frase[1000];
+    char palavra[] = "Cpf";
+    char frase[100000];
+    strlwr(palavra);
 
     printf("\n");
     printf("================ Estrutura de dados Busca-em-Strings ========================");
@@ -92,15 +94,16 @@ int main()
         printf("Não foi possivel abrir o arquivo");
         exit (0);
     }
+    /*
+        while (!feof(arquivo))
+        {
+            fgets(frase, 1000, arquivo);
 
-    while (!feof(arquivo))
-    {
-        fgets(frase, 100, arquivo);
-
-    }
-
+        }
+    */
+    fgets(frase, 100000, arquivo);
     printf("vem do arquivo txt >>  %s", frase);
-
+    strlwr(frase);
 
     printf("\n\n\n");
 

@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1588021720 source:c:\users\ezio\desktop\busca-em-strings\busca_string_rabin_karp\main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<strings.h>
+	<string.h>
+	<ctype.h>
+	<iostream>
+

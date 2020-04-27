@@ -60,7 +60,7 @@ void search(char pat[], char txt[], int q)
 
             // if p == t and pat[0...M-1] = txt[i, i+1, ...i+M-1]
             if (j == M)
-                printf("padrao encontrado ni indice %d\n", i);
+                printf("padrao encontrado no indice %d\n", i);
 
         }
 
@@ -85,13 +85,13 @@ void search(char pat[], char txt[], int q)
 
 int main()
 {
-    char pat[100]  = "E";
-    char txt[100000] = "ezioalvesfreireportadordocpf012285901-70";
+    char pat[100];
+    char txt[100000];
     strlwr(pat);
     strlwr(txt);
+    char nomeArquivo[50];
 
     int q = 101; // A prime number
-    search(pat, txt, q);
 
 //===================================================//////////////////////////////////=================================
 
@@ -102,12 +102,43 @@ int main()
     printf("\n\n\n");
 
 
-
-
-
-
 //==================================================//////////////////////////////////===================================
+printf("informe o caminho, nome e extensao do arquivo para que o sistema faca a busca");
+    printf("\n\n");
+    scanf("%s", nomeArquivo);
 
+    printf("Para que seja feita a busca, informe a palavra ou frase desejada");
+    printf("\n\n");
+    scanf("%s", pat);
+
+    // MANIPULAÇÂO DE ARQUIVO
+
+     FILE *arquivo;
+
+    arquivo = fopen(nomeArquivo,"rt");//wt = gravação, rt = leitura, a = append
+    if(arquivo == NULL)
+    {
+        printf("Não foi possivel abrir o arquivo");
+        exit (0);
+    }
+
+    fgets(txt, 100000, arquivo);
+
+    printf("\n\n\n");
+
+    fclose(arquivo);
+
+    printf("\n\n\n");
+
+    printf("\n\n\n");
+
+    search(pat, txt, q);
+
+    printf("\n\n\n");
+    printf("texto completo>>\n%s",txt);
+
+    printf("\n\n\n");
+    system("pause");
 
     return 0;
 }

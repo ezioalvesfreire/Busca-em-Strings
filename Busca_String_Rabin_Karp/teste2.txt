@@ -1,0 +1,8 @@
+ezioalvesfreire portador do cpf0155144162-54 observação está truncando devido limitações do fscamf, pode ver que se tentar buscar qualquer palavra depois do espaço 
+o sistema vai dizer que não exite!
+
+ portanto vamos usar algum dos metodo get, e também manipuluar o arquivo da base para antes de fazer a busca transformando sua copia em minúscula 
+e a palavra desejada também em minuscula
+
+depois que fizermos tudo isso transformaremos o sistema de abrir e fechar o arquivo em uma função fora do main 
+e a leitura da palavra desejada através de comando pelo teclado.\0

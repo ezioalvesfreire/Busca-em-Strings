@@ -76,8 +76,7 @@ void search(char pat[], char txt[], int q)
                 t = (t + q);
         }
     }
-    if(j != M)
-        printf("nenhum hash foi encontrado!");
+
 }
 
 /* Driver code */
@@ -122,11 +121,10 @@ printf("informe o caminho, nome e extensao do arquivo para que o sistema faca a 
         exit (0);
     }
 
-    fgets(txt, 100000, arquivo);
+    //fgets(txt, 100000, arquivo);
+    while(fgets(txt, 100000, arquivo) != NULL);
 
     printf("\n\n\n");
-
-    fclose(arquivo);
 
     printf("\n\n\n");
 
@@ -136,6 +134,8 @@ printf("informe o caminho, nome e extensao do arquivo para que o sistema faca a 
 
     printf("\n\n\n");
     printf("texto completo>>\n%s",txt);
+
+    fclose(arquivo);
 
     printf("\n\n\n");
     system("pause");

@@ -121,8 +121,8 @@ printf("informe o caminho, nome e extensao do arquivo para que o sistema faca a 
         exit (0);
     }
 
-    //fgets(txt, 100000, arquivo);
-    while(fgets(txt, 100000, arquivo) != NULL);
+   // while(gets(txt, 100000, arquivo) != NULL);
+    while(fscanf(txt,100000, arquivo)!= EOF);
 
     printf("\n\n\n");
 

@@ -89,7 +89,8 @@ void abreFechaArquivo(char frase[], char nomeArquivo[]){
 
         }
     */
-    fgets(frase, 100000, arquivo);
+  //  fgets(frase, 100000, arquivo);
+    while(fgets(frase,100000,arquivo)!= NULL);
     printf("texto completo>>\n%s",frase);
 
     printf("\n\n\n");

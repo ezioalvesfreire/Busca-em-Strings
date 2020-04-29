@@ -10,7 +10,7 @@ Algoritmo dado no livro CLRS */
 using namespace std;
 
 // constD é o número de caracteres no alfabeto de entrada
-#define constD 256
+#define constDascii 256
 
 /* pat -> pattern
     txt -> text
@@ -27,15 +27,15 @@ void search(char pat[], char txt[], int numPrimo)
 
     // O valor de h seria "pow (d, M-1)% q"// The value of h would be "pow(d, M-1)%q"
     for (i = 0; i < M - 1; i++)
-        h = (h * constD) % numPrimo;
+        h = (h * constDascii) % numPrimo;
 
 
     // Calcule o valor de hash do padrão e primeiro// Calculate the hash value of pattern and first
     // janela do texto// window of text
     for (i = 0; i < M; i++)
     {
-        hashPadrao = (constD * hashPadrao + pat[i]) % numPrimo;
-        hashTexto = (constD * hashTexto + txt[i]) % numPrimo;
+        hashPadrao = (constDascii * hashPadrao + pat[i]) % numPrimo;
+        hashTexto = (constDascii * hashTexto + txt[i]) % numPrimo;
     }
 
 
@@ -63,14 +63,14 @@ void search(char pat[], char txt[], int numPrimo)
 
         }
 
-        // Calcular o valor do hash para a próxima janela de texto: Remover // Calculate hash value for next window of text: Remove
-        // dígito inicial, adicione o dígito final// leading digit, add trailing digit
+        // Calcular o valor do hash para a próxima janela de texto: Remover
+        // dígito inicial, adicione o dígito final
         if ( i < N-M )
         {
-            hashTexto = (constD*(hashTexto - txt[i]*h) + txt[i+M])%numPrimo;
+            hashTexto = (constDascii*(hashTexto - txt[i]*h) + txt[i+M])%numPrimo;
 
-            // Podemos obter um valor negativo de t, convertendo-o para positivo // We might get negative value of t, converting it
-            // to positive
+            // Podemos obter um valor negativo de t, convertendo-o para positivo
+
             if (hashTexto < 0)
                 hashTexto = (hashTexto + numPrimo);
         }
@@ -89,7 +89,7 @@ int main()
     strlwr(txt);
     char nomeArquivo[50];
 
-    int q = 101; // A prime number
+    int numPrimo = 101; // A prime number
 
 //===================================================//////////////////////////////////=================================
 
@@ -120,7 +120,9 @@ printf("informe o caminho, nome e extensao do arquivo para que o sistema faca a 
         exit (0);
     }
 
-    fgets(txt, 100000, arquivo);
+ //   fgets(txt, 100000, arquivo);
+
+     while(fgets(txt, sizeof(txt), arquivo) != NULL)
     //while(fgets(txt,100000,arquivo)!= NULL);
 
     printf("\n\n\n");
@@ -129,7 +131,7 @@ printf("informe o caminho, nome e extensao do arquivo para que o sistema faca a 
 
     printf("\n\n\n");
 
-    search(palavraDesej, txt, q);
+    search(palavraDesej, txt, numPrimo);
 
     printf("\n\n\n");
     printf("texto completo>>\n%s",txt);

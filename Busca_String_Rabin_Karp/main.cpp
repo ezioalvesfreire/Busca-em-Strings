@@ -15,9 +15,11 @@ using namespace std;
 /* pat -> pattern
     txt -> text
 */
-void search(char pat[], char txt[], int numPrimo)
+void search(char palavraDesej[], char txt[], int numPrimo)
 {
-    int M = strlen(pat);
+    palavraDesej = strlwr(palavraDesej);
+    txt = strlwr(txt);
+    int M = strlen(palavraDesej);
     int N = strlen(txt);
     int i, j;
     int hashPadrao = 0; //hash padrão começa com zero
@@ -34,7 +36,7 @@ void search(char pat[], char txt[], int numPrimo)
     // janela do texto// window of text
     for (i = 0; i < M; i++)
     {
-        hashPadrao = (constDascii * hashPadrao + pat[i]) % numPrimo;
+        hashPadrao = (constDascii * hashPadrao + palavraDesej[i]) % numPrimo;
         hashTexto = (constDascii * hashTexto + txt[i]) % numPrimo;
     }
 
@@ -53,7 +55,7 @@ void search(char pat[], char txt[], int numPrimo)
             // * Verifique os caracteres um por um * //* Check for characters one by one */
             for (j = 0; j < M; j++)
             {
-                if (txt[i+j] != pat[j])
+                if (txt[i+j] != palavraDesej[j])
                     break;
             }
 

@@ -21,7 +21,8 @@ bool testar(int teste[], int tam)
 
 
 bool existe( char palavra[], char frase[])
-{
+{    frase = strlwr(frase);
+     palavra = strlwr(palavra);
     int teste[strlen(palavra)];
     int aux;
 
@@ -103,8 +104,6 @@ int main()
 {
     char palavra[100];
     char frase[100000];
-    strlwr(palavra);
-    strlwr(frase);
     char nomeArquivo[50];
 
     printf("\n");
@@ -120,7 +119,7 @@ int main()
     scanf("%s", palavra);
 
     // MANIPULAÇÂO DE ARQUIVO
-    abreFechaArquivo(frase, nomeArquivo);
+    abreFechaArquivo(frase , nomeArquivo);
     resposta(palavra, frase);
 
     printf("\n\n\n");

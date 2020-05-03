@@ -9,35 +9,32 @@ Algoritmo dado no livro CLRS */
 //#include <bits/stdc++.h>
 using namespace std;
 
-// constD é o número de caracteres no alfabeto de entrada
-#define constDascii 256
-//textoNaBase
-/* pat -> pattern
-    txt -> text -> arquivoTexto
-*/
-void search(char palavraDesej[], char textoCompleto[], int numPrimo )
+// constAscii é o número de caracteres no alfabeto de entrada
+#define constAscii 256
+
+void search(char palavraDesej[], char textoAux[], int numPrimo )
 {
     palavraDesej = strlwr(palavraDesej);
-    textoCompleto = strlwr(textoCompleto);
+    textoAux = strlwr(textoAux);
     int M = strlen(palavraDesej);
-    int N = strlen(textoCompleto);
+    int N = strlen(textoAux);
     int i, j;
     int hashPadrao = 0; //hash padrão começa com zero
-    int hashTexto = 0; // valor do hash para txt inicia em zero
+    int hashTexto = 0; // valor do hash para texto inicia em zero
     int h = 1;
 
 
-    // O valor de h seria "pow (d, M-1)% q"// The value of h would be "pow(d, M-1)%q"
+    // O valor de h seria "pow (constAscii, M-1)% numPrimo"
     for (i = 0; i < M - 1; i++)
-        h = (h * constDascii) % numPrimo;
+        h = (h * constAscii) % numPrimo;
 
 
     // Calcule o valor de hash do padrão e primeiro// Calculate the hash value of pattern and first
     // janela do texto// window of text
     for (i = 0; i < M; i++)
     {
-        hashPadrao = (constDascii * hashPadrao + palavraDesej[i]) % numPrimo;
-        hashTexto = (constDascii * hashTexto + textoCompleto[i]) % numPrimo;
+        hashPadrao = (constAscii * hashPadrao + palavraDesej[i]) % numPrimo;
+        hashTexto = (constAscii * hashTexto + textoAux[i]) % numPrimo;
     }
 
 
@@ -55,11 +52,11 @@ void search(char palavraDesej[], char textoCompleto[], int numPrimo )
             // * Verifique os caracteres um por um * //* Check for characters one by one */
             for (j = 0; j < M; j++)
             {
-                if (textoCompleto[i+j] != palavraDesej[j])
+                if (textoAux[i+j] != palavraDesej[j])
                     break;
             }
 
-            // if p == t and pat[0...M-1] = txt[i, i+1, ...i+M-1]
+            // if hashPadrao == hashTexto and palavraDesej[0...M-1] = textoAux[i, i+1, ...i+M-1]
             if (j == M)
                 printf("padrao encontrado no indice %d\n", i);
 
@@ -69,9 +66,9 @@ void search(char palavraDesej[], char textoCompleto[], int numPrimo )
         // dígito inicial, adicione o dígito final
         if ( i < N-M )
         {
-            hashTexto = (constDascii*(hashTexto - textoCompleto[i]*h) + textoCompleto[i+M])%numPrimo;
+            hashTexto = (constAscii*(hashTexto - textoAux[i]*h) + textoAux[i+M])%numPrimo;
 
-            // Podemos obter um valor negativo de t, convertendo-o para positivo
+            // Podemos obter um valor negativo de hashTexto, convertendo-o para positivo
 
             if (hashTexto < 0)
                 hashTexto = (hashTexto + numPrimo);
@@ -86,11 +83,9 @@ void search(char palavraDesej[], char textoCompleto[], int numPrimo )
 int main()
 {
     char palavraDesej[100];
-   // char txt[100000];
     char nomeArquivo[50];
-    char textoCompleto[300000];
-   // char textoNaBase[300000];
-   char arquivoTexto [300000];
+    char textoAux[300000];
+    char arquivoTexto [300000];
 
     int numPrimo = 101; // A prime number
 
@@ -127,28 +122,23 @@ printf("informe o caminho, nome e extensao do arquivo para que o sistema faca a 
     while (!feof(arquivo))
         {
             fgets(arquivoTexto, sizeof(arquivoTexto), arquivo);
-            strcat(textoCompleto,arquivoTexto);
+            strcat(textoAux,arquivoTexto);
 
         }
 
 
- //   fgets(txt, 100000, arquivo);
-
-   //  while(fgets(arquivoTexto, sizeof(arquivoTexto), arquivo) != NULL) parcialmente funcionando
-
-    //while(fgets(txt,100000,arquivo)!= NULL);
-
     printf("\n\n\n");
 
     printf("\n\n\n");
 
-    printf("\n\n\n");
-
-    search(palavraDesej, textoCompleto, numPrimo);
+    printf("texto completo>>\n%s",textoAux);
 
     printf("\n\n\n");
-    printf("texto completo>>\n%s",textoCompleto); ////
 
+
+    search(palavraDesej, textoAux, numPrimo);
+
+    printf("\n\n\n");
 
     printf("\n\n\n");
     system("pause");

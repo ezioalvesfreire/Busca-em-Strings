@@ -87,8 +87,6 @@ int main()
 {
     char palavraDesej[100];
     char txt[100000];
-    strlwr(palavraDesej);
-    strlwr(txt);
     char nomeArquivo[50];
 
     int numPrimo = 101; // A prime number

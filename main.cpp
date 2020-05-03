@@ -20,38 +20,38 @@ bool testar(int teste[], int tam)
 }
 
 
-bool existe( char palavra[], char frase[])
-{    frase = strlwr(frase);
-     palavra = strlwr(palavra);
-    int teste[strlen(palavra)];
+bool existe( char stringDesejada[], char textoCompleto[])
+{    textoCompleto = strlwr(textoCompleto);
+     stringDesejada = strlwr(stringDesejada);
+    int teste[strlen(stringDesejada)];
     int aux;
 
-    if(strlen(palavra) > strlen(frase ) )
+    if(strlen(stringDesejada) > strlen(textoCompleto ) )
     {
         return false;
     }
-    if(strcasecmp(palavra, frase)==0)
+    if(strcasecmp(stringDesejada, textoCompleto)==0)
     {
         return true;
     }
-    for(int i = 0; i <= strlen(frase) - strlen(palavra); i++)
+    for(int i = 0; i <= strlen(textoCompleto) - strlen(stringDesejada); i++)
     {
-        if(frase[i] == palavra[0])
+        if(textoCompleto[i] == stringDesejada[0])
         {
 
-            for(int k=0; k<strlen(palavra); k++)
+            for(int k=0; k<strlen(stringDesejada); k++)
                 teste[k]=0;
 
             aux=i;
-            for(int j=0; j<strlen(palavra); j++)
+            for(int j=0; j<strlen(stringDesejada); j++)
             {
-                if(palavra[j]== frase[aux])
+                if(stringDesejada[j]== textoCompleto[aux])
                 {
                     teste[j] = 1;
                     aux++;
                 }
             }
-            if( testar(teste, strlen(palavra)))
+            if( testar(teste, strlen(stringDesejada)))
             {
                 return true;
             }
@@ -60,9 +60,9 @@ bool existe( char palavra[], char frase[])
     }
     return false;
 }
-void resposta(char palavra[], char frase[])
+void resposta(char stringDesejada[], char textoCompleto[])
 {
-    if(existe(palavra, frase))
+    if(existe(stringDesejada, textoCompleto))
     {
         printf("\n\n");
         printf("A palavra existe");
@@ -74,7 +74,7 @@ void resposta(char palavra[], char frase[])
     }
 }
 
-void abreFechaArquivo(char frase[], char nomeArquivo[]){
+void abreFechaArquivo(char textoNaBase[], char nomeArquivo[], char textoCompleto[]){
     FILE *arquivo;
 
     arquivo = fopen(nomeArquivo,"rt");//wt = gravação, rt = leitura, a = append
@@ -83,16 +83,15 @@ void abreFechaArquivo(char frase[], char nomeArquivo[]){
         printf("Não foi possivel abrir o arquivo");
         exit (0);
     }
-    /*
+
         while (!feof(arquivo))
         {
-            fgets(frase, 1000, arquivo);
+            fgets(textoNaBase, 300000, arquivo);
+            strcat(textoCompleto,textoNaBase);
 
         }
-    */
-  //  fgets(frase, 100000, arquivo);
-    while(fgets(frase,100000,arquivo)!= NULL);
-    printf("texto completo>>\n%s",frase);
+
+    printf("texto completo>>\n%s",textoCompleto);
 
     printf("\n\n\n");
 
@@ -102,12 +101,13 @@ void abreFechaArquivo(char frase[], char nomeArquivo[]){
 
 int main()
 {
-    char palavra[100];
-    char frase[100000];
+    char stringDesejada[100];
+    char textoNaBase[300000];
     char nomeArquivo[50];
+    char textoCompleto[300000];
 
     printf("\n");
-    printf("================ Estrutura de dados Busca-em-Strings ========================");
+    printf("================ Estrutura de dados Busca-em-Strings Metodo NAIVE ========================");
     printf("\n\n\n");
 
     printf("informe o caminho, nome e extensao do arquivo para que o sistema faca a busca");
@@ -116,11 +116,11 @@ int main()
 
     printf("Para que seja feita a busca, informe a palavra ou frase desejada");
     printf("\n\n");
-    scanf("%s", palavra);
+    scanf("%s", stringDesejada);
 
     // MANIPULAÇÂO DE ARQUIVO
-    abreFechaArquivo(frase , nomeArquivo);
-    resposta(palavra, frase);
+    abreFechaArquivo(textoNaBase , nomeArquivo, textoCompleto);
+    resposta(stringDesejada, textoCompleto);
 
     printf("\n\n\n");
 

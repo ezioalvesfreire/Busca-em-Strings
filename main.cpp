@@ -20,23 +20,23 @@ bool testar(int teste[], int tam)
 }
 
 
-bool existe( char stringDesejada[], char textoCompleto[])
-{    textoCompleto = strlwr(textoCompleto);
+bool existe( char stringDesejada[], char textoAux[])
+{    textoAux = strlwr(textoAux);
      stringDesejada = strlwr(stringDesejada);
     int teste[strlen(stringDesejada)];
     int aux;
 
-    if(strlen(stringDesejada) > strlen(textoCompleto ) )
+    if(strlen(stringDesejada) > strlen(textoAux ) )
     {
         return false;
     }
-    if(strcasecmp(stringDesejada, textoCompleto)==0)
+    if(strcasecmp(stringDesejada, textoAux)==0)
     {
         return true;
     }
-    for(int i = 0; i <= strlen(textoCompleto) - strlen(stringDesejada); i++)
+    for(int i = 0; i <= strlen(textoAux) - strlen(stringDesejada); i++)
     {
-        if(textoCompleto[i] == stringDesejada[0])
+        if(textoAux[i] == stringDesejada[0])
         {
 
             for(int k=0; k<strlen(stringDesejada); k++)
@@ -45,7 +45,7 @@ bool existe( char stringDesejada[], char textoCompleto[])
             aux=i;
             for(int j=0; j<strlen(stringDesejada); j++)
             {
-                if(stringDesejada[j]== textoCompleto[aux])
+                if(stringDesejada[j]== textoAux[aux])
                 {
                     teste[j] = 1;
                     aux++;
@@ -60,9 +60,9 @@ bool existe( char stringDesejada[], char textoCompleto[])
     }
     return false;
 }
-void resposta(char stringDesejada[], char textoCompleto[])
+void resposta(char stringDesejada[], char textoAux[])
 {
-    if(existe(stringDesejada, textoCompleto))
+    if(existe(stringDesejada, textoAux))
     {
         printf("\n\n");
         printf("A Srting foi encontrada!");
@@ -74,7 +74,7 @@ void resposta(char stringDesejada[], char textoCompleto[])
     }
 }
 
-void abreFechaArquivo(char textoNaBase[], char nomeArquivo[], char textoCompleto[]){
+void abreFechaArquivo(char arquivoTexto[], char nomeArquivo[], char textoAux[]){
     FILE *arquivo;
 
     arquivo = fopen(nomeArquivo,"rt");//wt = gravação, rt = leitura, a = append
@@ -86,12 +86,12 @@ void abreFechaArquivo(char textoNaBase[], char nomeArquivo[], char textoCompleto
 
         while (!feof(arquivo))
         {
-            fgets(textoNaBase, 300000, arquivo);
-            strcat(textoCompleto,textoNaBase);
+            fgets(arquivoTexto, 300000, arquivo);
+            strcat(textoAux,arquivoTexto);
 
         }
 
-    printf("texto completo>>\n%s",textoCompleto);
+    printf("texto completo>>\n%s",textoAux);
 
     printf("\n\n\n");
 
@@ -102,9 +102,9 @@ void abreFechaArquivo(char textoNaBase[], char nomeArquivo[], char textoCompleto
 int main()
 {
     char stringDesejada[100];
-    char textoNaBase[300000];
+    char arquivoTexto[300000];
     char nomeArquivo[50];
-    char textoCompleto[300000];
+    char textoAux[300000];
 
     printf("\n");
     printf("================ Estrutura de dados Busca-em-Strings Metodo NAIVE ========================");
@@ -119,12 +119,12 @@ int main()
     scanf("%s", stringDesejada);
 
     // MANIPULAÇÂO DE ARQUIVO
-    abreFechaArquivo(textoNaBase , nomeArquivo, textoCompleto);
+    abreFechaArquivo(arquivoTexto , nomeArquivo, textoAux);
 
     printf("AGUARDE...\n");
     printf("A BUSCA ESTA SENDO FEITA!");
     printf("\n\n");
-    resposta(stringDesejada, textoCompleto);
+    resposta(stringDesejada, textoAux);
 
     printf("\n\n\n");
 

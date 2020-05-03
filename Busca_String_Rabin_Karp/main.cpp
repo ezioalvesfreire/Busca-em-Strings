@@ -11,16 +11,16 @@ using namespace std;
 
 // constD é o número de caracteres no alfabeto de entrada
 #define constDascii 256
-
+//textoNaBase
 /* pat -> pattern
-    txt -> text
+    txt -> text -> arquivoTexto
 */
-void search(char palavraDesej[], char txt[], int numPrimo)
+void search(char palavraDesej[], char textoCompleto[], int numPrimo )
 {
     palavraDesej = strlwr(palavraDesej);
-    txt = strlwr(txt);
+    textoCompleto = strlwr(textoCompleto);
     int M = strlen(palavraDesej);
-    int N = strlen(txt);
+    int N = strlen(textoCompleto);
     int i, j;
     int hashPadrao = 0; //hash padrão começa com zero
     int hashTexto = 0; // valor do hash para txt inicia em zero
@@ -37,7 +37,7 @@ void search(char palavraDesej[], char txt[], int numPrimo)
     for (i = 0; i < M; i++)
     {
         hashPadrao = (constDascii * hashPadrao + palavraDesej[i]) % numPrimo;
-        hashTexto = (constDascii * hashTexto + txt[i]) % numPrimo;
+        hashTexto = (constDascii * hashTexto + textoCompleto[i]) % numPrimo;
     }
 
 
@@ -55,7 +55,7 @@ void search(char palavraDesej[], char txt[], int numPrimo)
             // * Verifique os caracteres um por um * //* Check for characters one by one */
             for (j = 0; j < M; j++)
             {
-                if (txt[i+j] != palavraDesej[j])
+                if (textoCompleto[i+j] != palavraDesej[j])
                     break;
             }
 
@@ -69,7 +69,7 @@ void search(char palavraDesej[], char txt[], int numPrimo)
         // dígito inicial, adicione o dígito final
         if ( i < N-M )
         {
-            hashTexto = (constDascii*(hashTexto - txt[i]*h) + txt[i+M])%numPrimo;
+            hashTexto = (constDascii*(hashTexto - textoCompleto[i]*h) + textoCompleto[i+M])%numPrimo;
 
             // Podemos obter um valor negativo de t, convertendo-o para positivo
 
@@ -86,8 +86,11 @@ void search(char palavraDesej[], char txt[], int numPrimo)
 int main()
 {
     char palavraDesej[100];
-    char txt[100000];
+   // char txt[100000];
     char nomeArquivo[50];
+    char textoCompleto[300000];
+   // char textoNaBase[300000];
+   char arquivoTexto [300000];
 
     int numPrimo = 101; // A prime number
 
@@ -120,9 +123,19 @@ printf("informe o caminho, nome e extensao do arquivo para que o sistema faca a 
         exit (0);
     }
 
+
+    while (!feof(arquivo))
+        {
+            fgets(arquivoTexto, sizeof(arquivoTexto), arquivo);
+            strcat(textoCompleto,arquivoTexto);
+
+        }
+
+
  //   fgets(txt, 100000, arquivo);
 
-     while(fgets(txt, sizeof(txt), arquivo) != NULL)
+   //  while(fgets(arquivoTexto, sizeof(arquivoTexto), arquivo) != NULL) parcialmente funcionando
+
     //while(fgets(txt,100000,arquivo)!= NULL);
 
     printf("\n\n\n");
@@ -131,10 +144,10 @@ printf("informe o caminho, nome e extensao do arquivo para que o sistema faca a 
 
     printf("\n\n\n");
 
-    search(palavraDesej, txt, numPrimo);
+    search(palavraDesej, textoCompleto, numPrimo);
 
     printf("\n\n\n");
-    printf("texto completo>>\n%s",txt);
+    printf("texto completo>>\n%s",textoCompleto); ////
 
 
     printf("\n\n\n");

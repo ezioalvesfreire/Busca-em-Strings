@@ -65,12 +65,12 @@ void resposta(char stringDesejada[], char textoCompleto[])
     if(existe(stringDesejada, textoCompleto))
     {
         printf("\n\n");
-        printf("A palavra existe");
+        printf("A Srting foi encontrada!");
     }
     else
     {
         printf("\n\n\n");
-        printf("A palavra nao existe");
+        printf("Nao foi possivel encontrar a string desejada!");
     }
 }
 
@@ -110,16 +110,20 @@ int main()
     printf("================ Estrutura de dados Busca-em-Strings Metodo NAIVE ========================");
     printf("\n\n\n");
 
-    printf("informe o caminho, nome e extensao do arquivo para que o sistema faca a busca");
+    printf("Informe o caminho, nome e extensao do arquivo para que o sistema faca a busca");
     printf("\n\n");
     scanf("%s", nomeArquivo);
 
-    printf("Para que seja feita a busca, informe a palavra ou frase desejada");
+    printf("Informe a palavra ou frase desejada para busca");
     printf("\n\n");
     scanf("%s", stringDesejada);
 
     // MANIPULAÇÂO DE ARQUIVO
     abreFechaArquivo(textoNaBase , nomeArquivo, textoCompleto);
+
+    printf("AGUARDE...\n");
+    printf("A BUSCA ESTA SENDO FEITA!");
+    printf("\n\n");
     resposta(stringDesejada, textoCompleto);
 
     printf("\n\n\n");

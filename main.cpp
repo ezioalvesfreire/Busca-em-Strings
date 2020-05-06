@@ -21,8 +21,10 @@ bool testar(int teste[], int tam)
 
 
 bool existe( char stringDesejada[], char textoAux[])
-{    textoAux = strlwr(textoAux);
+{
+     textoAux = strlwr(textoAux);
      stringDesejada = strlwr(stringDesejada);
+
     int teste[strlen(stringDesejada)];
     int aux;
 
@@ -34,12 +36,13 @@ bool existe( char stringDesejada[], char textoAux[])
     {
         return true;
     }
+
     for(int i = 0; i <= strlen(textoAux) - strlen(stringDesejada); i++)
     {
         if(textoAux[i] == stringDesejada[0])
         {
 
-            for(int k=0; k<strlen(stringDesejada); k++)
+            for(int k=0; k<strlen(stringDesejada); k++) // for para zerar a variavel teste
                 teste[k]=0;
 
             aux=i;

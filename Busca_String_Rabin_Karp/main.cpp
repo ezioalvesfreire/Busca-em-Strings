@@ -136,7 +136,7 @@ printf("informe o caminho, nome e extensao do arquivo para que o sistema faca a 
     printf("\n\n\n");
 
 
-    search(palavraDesej, textoAux, numPrimo);
+   // search(palavraDesej, textoAux, numPrimo);
 
     printf("\n\n\n");
 
